@@ -2,7 +2,6 @@ package org.chrisle.netbeans.plugins.nbinstallplugin.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 import org.netbeans.api.autoupdate.InstallSupport;
 import org.netbeans.api.autoupdate.OperationContainer;
 import org.openide.awt.ActionID;
@@ -26,13 +25,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import static org.chrisle.netbeans.plugins.nbinstallplugin.actions.Bundle.CTL_OsgiBundleFilterDescription;
+import org.netbeans.api.autoupdate.InstallSupport.Installer;
+import org.netbeans.api.autoupdate.OperationException;
+import org.netbeans.api.autoupdate.OperationSupport.Restarter;
 import org.netbeans.api.autoupdate.UpdateManager;
 import org.netbeans.api.autoupdate.UpdateUnit;
 import org.netbeans.api.autoupdate.UpdateUnitProvider;
 import org.netbeans.api.autoupdate.UpdateUnitProviderFactory;
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.filesystems.FileUtil;
+import org.openide.util.Cancellable;
 import org.openide.util.NbBundle;
 import org.openide.util.NbBundle.Messages;
 import org.openide.util.NbPreferences;
@@ -295,21 +300,21 @@ public final class InstallPluginAction implements ActionListener {
         return false;
     }
 
-//    static Restarter doInstall(InstallSupport support, Installer installer) throws OperationException {
-//        final String displayName = "Installing plugin...";
-//        System.out.println(displayName);
-//        ProgressHandle installHandle = ProgressHandleFactory.createHandle(
-//                displayName,
-//                new Cancellable() {
-//                    @Override
-//                    public boolean cancel() {
-//                        return true;
-//                    }
-//                }
-//        );
-//
-//        return support.doInstall(installer, installHandle);
-//    }
+    static Restarter doInstall(InstallSupport support, Installer installer) throws OperationException {
+        final String displayName = "Installing plugin...";
+        System.out.println(displayName);
+        ProgressHandle installHandle = ProgressHandleFactory.createHandle(
+                displayName,
+                new Cancellable() {
+                    @Override
+                    public boolean cancel() {
+                        return true;
+                    }
+                }
+        );
+
+        return support.doInstall(installer, installHandle);
+    }
 //
 //    static Installer doVerify(InstallSupport support, Validator validator) throws OperationException {
 //        final String displayName = "Validating Gradle plugin...";
