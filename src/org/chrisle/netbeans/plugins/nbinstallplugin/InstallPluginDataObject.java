@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package org.chrisle.netbeans.plugins.nbinstallplugin.actions;
+package org.chrisle.netbeans.plugins.nbinstallplugin;
 
 import java.io.IOException;
 import org.netbeans.core.spi.multiview.MultiViewElement;
@@ -105,5 +100,4 @@ public class InstallPluginDataObject extends MultiDataObject {
     public static MultiViewEditorElement createEditor(Lookup lkp) {
         return new MultiViewEditorElement(lkp);
     }
-
 }

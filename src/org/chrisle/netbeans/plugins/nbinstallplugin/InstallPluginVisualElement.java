@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.chrisle.netbeans.plugins.nbinstallplugin.actions;
+package org.chrisle.netbeans.plugins.nbinstallplugin;
 
 import javax.swing.Action;
 import javax.swing.JComponent;
